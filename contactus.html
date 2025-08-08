@@ -414,24 +414,27 @@
         const btnText = form.querySelector('.btn-text');
 
         form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            btn.disabled = true; btnText.textContent = 'Sending…';
+        e.preventDefault();
+        btn.disabled = true; btnText.textContent = 'Sending…';
 
-            const data = Object.fromEntries(new FormData(form).entries());
+        const data = Object.fromEntries(new FormData(form).entries());
+        data.newsletter = document.getElementById('newsletter').checked; // boolean
 
-            try {
-                const res = await fetch('/api/send-contact', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                });
-                if (!res.ok) throw new Error('Request failed');
-                btnText.textContent = 'Sent!';
-                form.reset();
-            } catch (err) {
-                alert('Sorry, message could not be sent. Please try again.');
-                btn.disabled = false; btnText.textContent = 'Send Message';
-            }
+        try {
+            const res = await fetch('/api/send-contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+            });
+            if (!res.ok) throw new Error('Request failed');
+            btnText.textContent = 'Sent!';
+            form.reset();
+            setTimeout(() => { btnText.textContent = 'Send Message'; btn.disabled = false; }, 1500);
+        } catch (err) {
+            alert('Sorry, message could not be sent. Please try again.');
+            btn.disabled = false; btnText.textContent = 'Send Message';
+            console.error(err);
+        }
         });
 
         // FAQ Toggle
