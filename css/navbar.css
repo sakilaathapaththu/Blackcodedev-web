@@ -99,3 +99,74 @@ nav.scrolled {
 .nav-links a:hover::after {
     width: 100%;
 }
+/* --- Responsive fixes (append to navbar.css) --- */
+:root{
+  --nav-h-desktop: 70px;
+  --nav-h-mobile: 64px;
+}
+
+/* Reserve space below fixed nav on small screens */
+@media (max-width: 768px){
+  body{ padding-top: var(--nav-h-mobile); }
+  nav{ padding: 12px 20px; }
+  .nav-links{ gap: 20px; }
+  .nav-links a{ font-size: 0.95rem; padding: 6px 2px; }
+}
+
+/* Slightly reduce on tablets */
+@media (min-width: 769px) and (max-width: 1100px){
+  body{ padding-top: var(--nav-h-desktop); }
+  .nav-links{ gap: 24px; }
+  .nav-links a{ font-size: 0.98rem; }
+}
+
+/* Never let links wrap weirdly */
+.nav-links{ flex-wrap: wrap; }
+/* Hamburger icon */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 1101;
+}
+
+.menu-toggle span {
+    display: block;
+    height: 3px;
+    background: #fff;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Mobile menu styles */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: var(--nav-h-mobile);
+        right: 0;
+        width: 220px;
+        background: rgba(0,0,0,0.95);
+        padding: 20px;
+        gap: 15px;
+        border-left: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .nav-links.show {
+        display: flex;
+        animation: slideDown 0.3s ease;
+    }
+
+    @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+}
