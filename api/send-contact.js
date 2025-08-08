@@ -17,8 +17,8 @@ module.exports = async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_APP_PASSWORD,
+        user: process.env.GMAIL_USER,          // your Gmail
+        pass: process.env.GMAIL_APP_PASSWORD,  // 16-char App Password
       },
     });
 
@@ -38,7 +38,7 @@ module.exports = async (req, res) => {
 
     await transporter.sendMail({
       from: `"BlackCode Contact" <${process.env.GMAIL_USER}>`,
-      to: process.env.TO_EMAIL || 'helloblackcodedev@gmail.com',
+      to: process.env.TO_EMAIL || 'helloblackcodedev@gmail.com', // recipient (you)
       replyTo: `${firstName} ${lastName} <${email}>`,
       subject,
       html,
