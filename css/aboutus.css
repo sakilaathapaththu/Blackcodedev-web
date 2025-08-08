@@ -494,26 +494,49 @@ body {
     .story-container {
         grid-template-columns: 1fr;
         gap: 40px;
-        text-align: center;
+        /* text-align: center; */
     }
 
-    .timeline {
-        padding-left: 30px;
+ .story-content h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
     }
+
+    .story-content p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+/* Timeline adjustments */
+    .story-visual {
+        justify-content: center;
+    }
+
+    /* .timeline {
+        padding-left: 20px;
+    } */
 
     .timeline::before {
-        left: 15px;
+        
+        left: 33px;
     }
 
     .timeline-dot {
-        left: -35px;
+        left: -25px;
     }
 
     .timeline-item::before {
-        left: -70px;
+        left: -55px;
         font-size: 0.75rem;
     }
+   .timeline-content h4 {
+        font-size: 1rem;
+    }
 
+    .timeline-content p {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 30px;

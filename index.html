@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./css/footer.css">
     <link rel="stylesheet" href="./css/navbar.css">
     <link rel="icon" type="image/png" href="images/minilogo.png">
+    
 
 
 </head>
@@ -17,21 +18,30 @@
     <div class="particles" id="particles"></div>
 
     <!-- Navigation -->
+    
     <nav id="nav">
         <div class="nav-container">
             <a href="index.html" class="logo">
                 <img src="images/logo.png" alt="BlackCode Devs Logo">
-                <!-- <span>BlackCode Devs</span> -->
             </a>
+
+            <!-- Hamburger menu button -->
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
             <ul class="nav-links">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="aboutus.html">About Us</a></li>
-                <li><a href="ourteam.html" >Our Team</a></li>
+                <li><a href="ourteam.html">Our Team</a></li>
                 <li><a href="contactus.html">Contact</a></li>
             </ul>
         </div>
     </nav>
+
 
     <!-- Hero Section -->
     <section class="hero" id="home">
@@ -409,6 +419,12 @@
             card.style.transition = 'all 0.8s ease';
             observer.observe(card);
         });
+
+        document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("menu-toggle").addEventListener("click", function () {
+        document.querySelector(".nav-links").classList.toggle("show");
+    });
+});
     </script>
 </body>
 </html>

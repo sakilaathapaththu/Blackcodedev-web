@@ -21,17 +21,25 @@
         <div class="nav-container">
             <a href="index.html" class="logo">
                 <img src="images/logo.png" alt="BlackCode Devs Logo">
-                <!-- <span>BlackCode Devs</span> -->
             </a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
 
-                <li><a href="aboutus.html" class="active">About Us</a></li>
+            <!-- Hamburger menu button -->
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html" >Home</a></li>
+               
+                <li><a href="aboutus.html"class="active">About Us</a></li>
                 <li><a href="ourteam.html">Our Team</a></li>
                 <li><a href="contactus.html">Contact</a></li>
             </ul>
         </div>
     </nav>
+
 
     <!-- Hero Section -->
     <section class="hero">
@@ -490,6 +498,11 @@
 
         // Initialize animations
         animateStats();
+        document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("menu-toggle").addEventListener("click", function () {
+        document.querySelector(".nav-links").classList.toggle("show");
+    });
+});
     </script>
 </body>
 
