@@ -736,3 +736,51 @@ body {
         opacity: 0;
     }
 }
+/* Portfolio Section Mobile Responsiveness */
+@media (max-width: 1024px) {
+  
+
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .project-card .project-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .project-card .project-title {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr; /* Single column on small devices */
+    gap: 25px;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .project-card {
+    padding: 15px;
+  }
+
+  .project-card img {
+    border-radius: 8px;
+  }
+
+  .project-card .project-description {
+    font-size: 0.9rem;
+  }
+
+  .project-card .tech-tag {
+    font-size: 0.8rem;
+    padding: 4px 10px;
+  }
+}
