@@ -9,7 +9,31 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="./css/footer.css">
     <link rel="stylesheet" href="./css/navbar.css">
-     <link rel="icon" type="image/png" href="images/minilogo.png">
+    <link rel="icon" type="image/png" href="images/minilogo.png">
+    <link rel="canonical" href="https://blackcodedev.com/contactus.html" />
+    <!-- Open Graph -->
+    <meta property="og:title" content="About Us — BlackCode Devs" />
+    <meta property="og:description"
+        content="Learn about BlackCode Devs, our mission, and our team dedicated to delivering modern, scalable web and mobile applications." />
+    <meta property="og:url" content="https://blackcodedev.com/contactus.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://blackcodedev.com/og-cover.jpg" />
+
+    <!-- Social profile linking -->
+    <link rel="me" href="https://www.instagram.com/blackcodedevs" />
+    <link rel="me" href="https://www.linkedin.com/company/blackcodedevs/" />
+
+    <!-- Twitter (for previews on most platforms) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="About Us — BlackCode Devs" />
+    <meta name="twitter:description"
+        content="Learn about our mission and the team delivering modern software solutions." />
+    <meta name="twitter:image" content="https://blackcodedev.com/og-cover.jpg" />
+
+    <!-- Icons -->
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 </head>
 
 <body>
@@ -31,11 +55,11 @@
             </div>
 
             <ul class="nav-links">
-                <li><a href="index.html" >Home</a></li>
-                
+                <li><a href="index.html">Home</a></li>
+
                 <li><a href="aboutus.html">About Us</a></li>
                 <li><a href="ourteam.html">Our Team</a></li>
-                <li><a href="contactus.html"class="active">Contact</a></li>
+                <li><a href="contactus.html" class="active">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -371,8 +395,8 @@
                                 class="fab fa-facebook-f"></i></a> -->
                         <a href="https://www.instagram.com/blackcodedevs" target="_blank" aria-label="Instagram"><i
                                 class="fab fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/company/blackcodedevs/" target="_blank" aria-label="LinkedIn"><i
-                                class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.linkedin.com/company/blackcodedevs/" target="_blank"
+                            aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                         <!-- <a href="https://github.com" target="_blank" aria-label="GitHub"><i
                                 class="fab fa-github"></i></a> -->
                     </div>
@@ -389,11 +413,11 @@
     </footer>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("menu-toggle").addEventListener("click", function () {
-        document.querySelector(".nav-links").classList.toggle("show");
-    });
-});
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("menu-toggle").addEventListener("click", function () {
+                document.querySelector(".nav-links").classList.toggle("show");
+            });
+        });
         // Navigation scroll effect
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('nav');
@@ -427,27 +451,27 @@
         const btnText = form.querySelector('.btn-text');
 
         form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        btn.disabled = true; btnText.textContent = 'Sending…';
+            e.preventDefault();
+            btn.disabled = true; btnText.textContent = 'Sending…';
 
-        const data = Object.fromEntries(new FormData(form).entries());
-        data.newsletter = document.getElementById('newsletter').checked; // boolean
+            const data = Object.fromEntries(new FormData(form).entries());
+            data.newsletter = document.getElementById('newsletter').checked; // boolean
 
-        try {
-            const res = await fetch('/api/send-contact', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-            });
-            if (!res.ok) throw new Error('Request failed');
-            btnText.textContent = 'Sent!';
-            form.reset();
-            setTimeout(() => { btnText.textContent = 'Send Message'; btn.disabled = false; }, 1500);
-        } catch (err) {
-            alert('Sorry, message could not be sent. Please try again.');
-            btn.disabled = false; btnText.textContent = 'Send Message';
-            console.error(err);
-        }
+            try {
+                const res = await fetch('/api/send-contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                if (!res.ok) throw new Error('Request failed');
+                btnText.textContent = 'Sent!';
+                form.reset();
+                setTimeout(() => { btnText.textContent = 'Send Message'; btn.disabled = false; }, 1500);
+            } catch (err) {
+                alert('Sorry, message could not be sent. Please try again.');
+                btn.disabled = false; btnText.textContent = 'Send Message';
+                console.error(err);
+            }
         });
 
         // FAQ Toggle
