@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.blackcodedev.com" }],
+      "destination": "https://blackcodedev.com/:1",
+      "permanent": true
+    }
+  ]
+}

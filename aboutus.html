@@ -9,7 +9,31 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="./css/footer.css">
     <link rel="stylesheet" href="./css/navbar.css">
-     <link rel="icon" type="image/png" href="images/minilogo.png">
+    <link rel="icon" type="image/png" href="images/minilogo.png">
+    <link rel="canonical" href="https://blackcodedev.com/aboutus.html" />
+    <!-- Open Graph -->
+    <meta property="og:title" content="About Us — BlackCode Devs" />
+    <meta property="og:description"
+        content="Learn about BlackCode Devs, our mission, and our team dedicated to delivering modern, scalable web and mobile applications." />
+    <meta property="og:url" content="https://blackcodedev.com/aboutus.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://blackcodedev.com/og-cover.jpg" />
+
+    <!-- Social profile linking -->
+    <link rel="me" href="https://www.instagram.com/blackcodedevs" />
+    <link rel="me" href="https://www.linkedin.com/company/blackcodedevs/" />
+
+    <!-- Twitter (for previews on most platforms) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="About Us — BlackCode Devs" />
+    <meta name="twitter:description"
+        content="Learn about our mission and the team delivering modern software solutions." />
+    <meta name="twitter:image" content="https://blackcodedev.com/og-cover.jpg" />
+
+    <!-- Icons -->
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 </head>
 
 <body>
@@ -31,9 +55,9 @@
             </div>
 
             <ul class="nav-links">
-                <li><a href="index.html" >Home</a></li>
-               
-                <li><a href="aboutus.html"class="active">About Us</a></li>
+                <li><a href="index.html">Home</a></li>
+
+                <li><a href="aboutus.html" class="active">About Us</a></li>
                 <li><a href="ourteam.html">Our Team</a></li>
                 <li><a href="contactus.html">Contact</a></li>
             </ul>
@@ -56,7 +80,8 @@
         <div class="story-container">
             <div class="story-content">
                 <h2>Our Story</h2>
-                <p><strong>BlackCode Devs</strong> began in 2023 as a group of passionate undergraduates taking on university
+                <p><strong>BlackCode Devs</strong> began in 2023 as a group of passionate undergraduates taking on
+                    university
                     assignment projects. What started with simple web and mobile application builds quickly evolved into
                     a mission to deliver real-world, production-grade solutions.</p>
 
@@ -99,12 +124,12 @@
                             <h4>First Real Products</h4>
                             <p>Developed major apps like <strong>ePaddy</strong> (smart farming) and launched our
                                 custom-built <strong>LMS</strong> platform.</p>
-                                <p>Delivered the official website for <strong>Lexicon International School</strong> and
+                            <p>Delivered the official website for <strong>Lexicon International School</strong> and
                                 expanded services to NGOs and SMEs.</p>
                         </div>
                     </div>
 
-                    
+
 
                     <div class="timeline-item" data-year="2025">
                         <div class="timeline-dot"></div>
@@ -389,8 +414,8 @@
                                 class="fab fa-facebook-f"></i></a> -->
                         <a href="https://www.instagram.com/blackcodedevs" target="_blank" aria-label="Instagram"><i
                                 class="fab fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/company/blackcodedevs/" target="_blank" aria-label="LinkedIn"><i
-                                class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.linkedin.com/company/blackcodedevs/" target="_blank"
+                            aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                         <!-- <a href="https://github.com" target="_blank" aria-label="GitHub"><i
                                 class="fab fa-github"></i></a> -->
                     </div>
@@ -498,12 +523,27 @@
 
         // Initialize animations
         animateStats();
-        document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("menu-toggle").addEventListener("click", function () {
-        document.querySelector(".nav-links").classList.toggle("show");
-    });
-});
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("menu-toggle").addEventListener("click", function () {
+                document.querySelector(".nav-links").classList.toggle("show");
+            });
+        });
     </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "BlackCode Devs",
+  "url": "https://blackcodedev.com",
+  "logo": "https://blackcodedev.com/logo.png",
+  "sameAs": [
+    "https://www.facebook.com/blackcodedev",
+    "https://www.instagram.com/blackcodedevs",
+    "https://www.linkedin.com/company/blackcodedevs/"
+  ]
+}
+</script>
+
 </body>
 
 </html>
