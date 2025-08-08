@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - BlackCode</title>
+    <link rel="stylesheet" href="./css/contactus.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/navbar.css">
+</head>
+
+<body>
+    <!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav id="nav">
+        <div class="nav-container">
+             <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="BlackCode Devs Logo">
+                <!-- <span>BlackCode Devs</span> -->
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="ourteam.html">Our Team</a></li>
+                <li><a href="contactus.html" class="active">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background"></div>
+        <div class="hero-content">
+            <h1>Get In Touch</h1>
+            <p>Ready to transform your ideas into reality? Let's start a conversation about your next project.</p>
+        </div>
+    </section>
+
+    <!-- Contact Main Section -->
+    <section class="contact-main">
+        <div class="contact-container">
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form-section">
+                    <h2>Start Your Project</h2>
+                    <p class="form-description">Tell us about your project and we'll get back to you within 24 hours.
+                    </p>
+
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                                <span class="input-focus"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                                <span class="input-focus"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required>
+                                <span class="input-focus"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone">
+                                <span class="input-focus"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="company">Company Name</label>
+                            <input type="text" id="company" name="company">
+                            <span class="input-focus"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="projectType">Project Type</label>
+                            <select id="projectType" name="projectType" required>
+                                <option value="">Select Project Type</option>
+                                <option value="web-development">Web Development</option>
+                                <option value="mobile-app">Mobile Application</option>
+                                <option value="ui-ux-design">UI/UX Design</option>
+                                <option value="e-commerce">E-Commerce Solution</option>
+                                <option value="ai-ml">AI/ML Development</option>
+                                <option value="consulting">Technical Consulting</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <span class="input-focus"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Project Details</label>
+                            <textarea id="message" name="message" rows="6"
+                                placeholder="Tell us about your project requirements, goals, and any specific features you have in mind..."
+                                required></textarea>
+                            <span class="input-focus"></span>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="newsletter" name="newsletter">
+                                <span class="checkmark"></span>
+                                Subscribe to our newsletter for updates and insights
+                            </label>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <span class="btn-text">Send Message</span>
+                            <span class="btn-loader"></span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="contact-info-section">
+                    <div class="contact-info">
+                        <h3>Let's Connect</h3>
+                        <p>We're here to help bring your vision to life. Reach out through any of these channels.</p>
+
+                        <div class="contact-methods">
+                            <div class="contact-method">
+
+                                <div class="method-details">
+                                    <h4>Email Us</h4>
+                                    <p>helloblackcodedev@gmail.com</p>
+
+                                </div>
+                            </div>
+
+                            <div class="contact-method">
+
+                                <div class="method-details">
+                                    <h4>Call Us</h4>
+                                    <p>+94 71 478 2241</p>
+                                    <p>Mon - Fri, 9AM - 6PM EST</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-method">
+
+                                <div class="method-details">
+                                    <h4>Visit Us</h4>
+                                    <p>Pothuhera, Kurunegala</p>
+                                    <p></p>
+                                </div>
+                            </div>
+
+                            <div class="contact-method">
+
+                                <div class="method-details">
+                                    <h4>Live Chat</h4>
+                                    <p>Available 24/7</p>
+                                    <a href="#" class="chat-btn">Start Chat</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="social-connect">
+                            <h4>Follow Us</h4>
+                            <div class="social-links">
+
+                                <a href="https://www.linkedin.com/company/blackcodedevs" class="social-link"
+                                    title="LinkedIn">
+
+                                    <span class="social-label">LinkedIn</span>
+                                </a>
+                                <a href="#" class="social-link" title="GitHub">
+
+                                    <span class="social-label">GitHub</span>
+                                </a>
+                                <a href="#" class="social-link" title="Twitter">
+
+                                    <span class="social-label">Twitter</span>
+                                </a>
+                                <a href="https://www.instagram.com/blackcodedevs" class="social-link" title="Instagram">
+
+                                    <span class="social-label">Instagram</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="faq-container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-grid">
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>How long does a typical BlackCode project take?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            Our project timelines vary based on the complexity and requirements. Standard web or mobile
+                            apps take 2–6 weeks. Advanced systems like LMS, eCommerce, or AI-based solutions may take
+                            2–4 months. You'll receive a full timeline during our initial consultation.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>What is BlackCode’s development process?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            We follow an agile methodology. Our flow includes: discovery → wireframing & design →
+                            development → testing → deployment. We ensure regular client feedback and transparent
+                            updates using tools like Trello, Slack, or WhatsApp.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Do you provide ongoing maintenance and support?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            Yes! We offer support packages based on your needs. This includes bug fixes, uptime
+                            monitoring, content updates, server management, and feature improvements for both web and
+                            mobile applications.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Can BlackCode work with our in-house team?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            Absolutely. We frequently collaborate with internal developers, designers, and marketing
+                            teams. We can also offer consultation-only roles or take over entire modules as your
+                            technical partner.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Which technologies does BlackCode specialize in?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            We specialize in modern tech stacks including React, Node.js, Spring Boot, Flutter,
+                            Firebase, MongoDB, and AWS. For CMS-based projects, we use Laravel, WordPress, and custom
+                            PHP. We also support hosting on VPS with cPanel or Linux Ubuntu.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>How will BlackCode communicate with me during the project?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            You’ll have a dedicated project manager for updates via email, WhatsApp, or Zoom. We share
+                            milestones, demo previews, and task status through Google Docs or Trello to keep everything
+                            transparent and on track.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-container">
+            <div class="cta-content">
+                <h2>Ready to Start Your Project?</h2>
+                <p>Join the 200+ businesses that trust BlackCode for their digital transformation</p>
+                <div class="cta-buttons">
+                    <a href="#contactForm" class="cta-btn primary">Get Started Now</a>
+                    <a href="tel:+94714782241" class="cta-btn secondary">Call Us Today</a>
+                </div>
+            </div>
+            <div class="cta-visual">
+                <div class="floating-elements">
+                    <div class="float-element">💻</div>
+                    <div class="float-element">📱</div>
+                    <div class="float-element">🚀</div>
+                    <div class="float-element">⚡</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+
+                <!-- Company Intro -->
+                <div class="footer-section">
+                    <h4>BlackCode Devs</h4>
+                    <p>Transforming ideas into exceptional digital experiences with modern technology and innovative
+                        thinking.</p>
+                </div>
+
+                <!-- Quick Navigation Links -->
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="aboutus.html">About Us</a></li>
+                        <li><a href="ourteam.html">Our Team</a></li>
+                        <li><a href="contactus.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Service Highlights -->
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Web Development</a></li>
+                        <li><a href="#">Mobile App Development</a></li>
+                        <li><a href="#">UI/UX Design</a></li>
+                        <li><a href="#">Technical Consulting</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p>📧 <a href="mailto:helloblackcodedev@gmail.com">helloblackcodedev@gmail.com</a></p>
+                    <p>📞 +94 71 478 2241</p>
+                    <p>📍 Pothuhera, Kurunegala</p>
+                </div>
+
+                <!-- Social Media Links -->
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/blackcodedevs" target="_blank" aria-label="Instagram"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="linkedin.com/company/blackcodedevs" target="_blank" aria-label="LinkedIn"><i
+                                class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com" target="_blank" aria-label="GitHub"><i
+                                class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Note -->
+            <div class="footer-bottom">
+                <p>&copy; 2025 <strong>BlackCodedevs</strong>. All rights reserved. Crafted with precision and passion.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        createParticles();
+
+        // Form handling
+        const form = document.getElementById('contactForm');
+        const btn = form.querySelector('.submit-btn');
+        const btnText = form.querySelector('.btn-text');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            btn.disabled = true; btnText.textContent = 'Sending…';
+
+            const data = Object.fromEntries(new FormData(form).entries());
+
+            try {
+                const res = await fetch('/api/send-contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                if (!res.ok) throw new Error('Request failed');
+                btnText.textContent = 'Sent!';
+                form.reset();
+            } catch (err) {
+                alert('Sorry, message could not be sent. Please try again.');
+                btn.disabled = false; btnText.textContent = 'Send Message';
+            }
+        });
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function () {
+                const faqItem = this.parentElement;
+                const answer = faqItem.querySelector('.faq-answer');
+                const toggle = this.querySelector('.faq-toggle');
+
+                faqItem.classList.toggle('active');
+
+                if (faqItem.classList.contains('active')) {
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                    toggle.textContent = '−';
+                } else {
+                    answer.style.maxHeight = '0';
+                    toggle.textContent = '+';
+                }
+            });
+        });
+
+        // Smooth scroll for CTA buttons
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animate elements on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.contact-method, .faq-item, .float-element').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(50px)';
+            item.style.transition = 'all 0.8s ease';
+            observer.observe(item);
+        });
+
+        // Floating elements animation
+        document.querySelectorAll('.float-element').forEach((element, index) => {
+            element.style.animationDelay = `${index * 0.5}s`;
+        });
+    </script>
+</body>
+
+</html>
