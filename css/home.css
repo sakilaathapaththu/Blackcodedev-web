@@ -737,7 +737,7 @@ body {
     }
 }
 /* Portfolio Section Mobile Responsiveness */
-@media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
   
 
   .portfolio-grid {
@@ -753,7 +753,7 @@ body {
   .project-card .project-title {
     font-size: 1.2rem;
   }
-}
+} */
 
 @media (max-width: 768px) {
   .portfolio-grid {
