@@ -1,0 +1,13 @@
+{
+  "name": "blackcode-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "BlackCode static site with contact form email API",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.13"
+  }
+}
