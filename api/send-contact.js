@@ -2,9 +2,7 @@
 const nodemailer = require('nodemailer');
 
 module.exports = async (req, res) => {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   const {
     firstName, lastName, email, phone = '', company = '',
@@ -19,8 +17,8 @@ module.exports = async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.GMAIL_USER,          // set in Vercel env
-        pass: process.env.GMAIL_APP_PASSWORD,  // set in Vercel env (App Password)
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_APP_PASSWORD,
       },
     });
 
@@ -39,9 +37,9 @@ module.exports = async (req, res) => {
     `;
 
     await transporter.sendMail({
-      from: `"BlackCode Contact" <${process.env.GMAIL_USER}>`,           // must be your Gmail
-      to: process.env.TO_EMAIL || 'helloblackcodedev@gmail.com',         // recipient
-      replyTo: `${firstName} ${lastName} <${email}>`,                    // replies go to sender
+      from: `"BlackCode Contact" <${process.env.GMAIL_USER}>`,
+      to: process.env.TO_EMAIL || 'helloblackcodedev@gmail.com',
+      replyTo: `${firstName} ${lastName} <${email}>`,
       subject,
       html,
       text: `${subject}\n\nFrom: ${firstName} ${lastName} <${email}>\nPhone: ${phone}\nCompany: ${company}\nType: ${projectType}\nNewsletter: ${newsletter ? 'Yes' : 'No'}\n\n${message}`,
