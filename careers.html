@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Opportunities</title>
+    <link rel="stylesheet" href="./css/career.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/navbar.css">
+
+<!-- careers.html -->
+<!-- <script src="./js/careers.js"></script> -->
+
+
+    <link rel="icon" type="image/png" href="images/minilogo.png">
+    <link rel="icon" href="images/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="./public/site.webmanifest">
+
+    <meta name="description"
+        content="BlackCode Devs builds modern, scalable web and mobile applications. Hire us for full-stack development, cloud, and AI integrations." />
+    <!-- Canonical -->
+    <link rel="canonical" href="https://blackcodedev.com/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="BlackCode Devs — Modern Software Development" />
+    <meta property="og:description"
+        content="We build high-quality web and mobile apps. Cloud-ready, secure, and fast." />
+    <meta property="og:url" content="https://blackcodedev.com/index.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://blackcodedev.com/images/minilogo.png">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+
+    <!-- Social profile linking for SEO -->
+    <link rel="me" href="https://www.instagram.com/blackcodedevs" />
+    <link rel="me" href="https://www.linkedin.com/company/blackcodedevs/" />
+
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="BlackCode Devs — Modern Software Development" />
+    <meta name="twitter:description" content="Web & mobile apps, cloud, and AI integrations." />
+    <meta name="twitter:image" content="https://blackcodedev.com/images/minilogo.png">
+    <!-- Icons -->
+    <link rel="icon" href="./public/favicon.ico" />
+    <link rel="apple-touch-icon" href="./public/apple-touch-icon.png" />
+    <link rel="manifest" href="./public/site.webmanifest" />
+
+</head>
+
+<body>
+    <div class="particles" id="particles"></div>
+    <!-- Navigation -->
+    <nav id="nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="BlackCode Devs Logo">
+            </a>
+
+            <!-- Hamburger menu button -->
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="ourteam.html">Our Team</a></li>
+                <li><a href="careers.html" class="active">Careers</a></li>
+                <li><a href="contactus.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1>Build the Future with BlackCode Devs</h1>
+            <p>Join a fast‑moving team building real‑world products across web, mobile, cloud, and AI. Ship, learn, and grow with us.</p>
+        </div>
+
+        
+    <div id="jobsGrid" class="jobs-grid">
+      <!-- Filled by JS with data from /api/jobs -->
+    </div>
+    
+    
+    </main>
+
+    <!-- Application Modal -->
+    <div class="modal-overlay" id="applicationModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalJobTitle">Apply for Position</h2>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+
+            <form id="applicationForm">
+                <input type="hidden" id="jobId" name="jobId" />
+                <input type="hidden" id="position" name="position" />
+                <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Contact Number *</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Why are you interested in this position? *</label>
+                    <textarea id="description" name="description"
+                        placeholder="Tell us about your interest in this role and what makes you a great fit..."
+                        required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="cv">Upload CV/Resume *</label>
+                    <div class="file-upload">
+                        <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx" required
+                            onchange="updateFileName()">
+                        <div class="file-upload-label">
+                            <span>📄</span>
+                            <span>Click to upload your CV/Resume</span>
+                        </div>
+                        <div class="file-name" id="fileName"></div>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Application</button>
+            </form>
+        </div>
+    </div>
+ <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+
+                <!-- Company Intro -->
+                <div class="footer-section">
+                    <h4>BlackCode Devs</h4>
+                    <p>Transforming ideas into exceptional digital experiences with modern technology and innovative
+                        thinking.</p>
+                </div>
+
+                <!-- Quick Navigation Links -->
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="aboutus.html">About Us</a></li>
+                        <li><a href="ourteam.html">Our Team</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Service Highlights -->
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Web Development</a></li>
+                        <li><a href="#">Mobile App Development</a></li>
+                        <li><a href="#">UI/UX Design</a></li>
+                        <li><a href="#">Technical Consulting</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p>📧 <a href="mailto:helloblackcodedev@gmail.com">helloblackcodedev@gmail.com</a></p>
+                    <p>📞 +94 71 478 2241</p>
+                    <p>📍 Colombo, Sri Lanka</p>
+                </div>
+
+                <!-- Social Media Links -->
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <!-- <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a> -->
+                        <a href="https://www.instagram.com/blackcodedevs" target="_blank" aria-label="Instagram"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/company/blackcodedevs/" target="_blank"
+                            aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <!-- <a href="https://github.com" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a> -->
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Note -->
+            <div class="footer-bottom">
+                <p>&copy; 2025 <strong>BlackcodeDevs</strong>. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+<script defer>
+/* ======= CONFIG ======= */
+const API_BASE = 'http://localhost:4000'; // change to '' if API is same-origin in prod
+
+/* ---------- NAV + MOBILE MENU ---------- */
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('nav');
+  if (!nav) return;
+  if (window.scrollY > 100) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
+});
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.getElementById('menu-toggle');
+  if (toggle) toggle.addEventListener('click', () => {
+    document.querySelector('.nav-links').classList.toggle('show');
+  });
+});
+
+/* ---------- BACKGROUND PARTICLES ---------- */
+function createParticles() {
+  const particlesContainer = document.getElementById('particles');
+  if (!particlesContainer) return;
+  const total = 50;
+  for (let i = 0; i < total; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.top = (80 + Math.random() * 20) + 'vh';
+    const size = 1 + Math.random() * 3;
+    p.style.width = size + 'px'; p.style.height = size + 'px';
+    p.style.animationDelay = (Math.random() * 6) + 's';
+    p.style.animationDuration = (3 + Math.random() * 4) + 's';
+    particlesContainer.appendChild(p);
+  }
+}
+document.addEventListener('DOMContentLoaded', createParticles);
+
+/* ---------- HELPERS ---------- */
+const $ = (sel) => document.querySelector(sel);
+function escapeHtml(s=''){
+  return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')
+                  .replaceAll('"','&quot;').replaceAll("'","&#39;");
+}
+function ensureHiddenFields() {
+  const form = $('#applicationForm'); if (!form) return;
+  if (!$('#jobId')) { const i=document.createElement('input'); i.type='hidden'; i.id='jobId'; i.name='jobId'; form.appendChild(i); }
+  if (!$('#position')) { const i=document.createElement('input'); i.type='hidden'; i.id='position'; i.name='position'; form.appendChild(i); }
+}
+
+/* ---------- JOBS: FETCH + RENDER ---------- */
+async function loadJobs() {
+  const grid = $('#jobsGrid'); if (!grid) return;
+  grid.innerHTML = `<div class="job-card"><p class="job-description">Loading openings…</p></div>`;
+  try {
+    const res = await fetch(`${API_BASE}/api/jobs`);
+    if (!res.ok) throw new Error(`GET /api/jobs -> ${res.status}`);
+    const jobs = await res.json();
+    if (!Array.isArray(jobs) || jobs.length === 0) {
+      grid.innerHTML = `<div class="job-card"><p class="job-description">No openings right now. Please check back soon.</p></div>`;
+      return;
+    }
+    grid.innerHTML = '';
+    jobs.forEach((job, i) => {
+      const card = renderJobCard(job);
+      card.style.animationDelay = `${i * 0.1}s`;
+      grid.appendChild(card);
+    });
+  } catch (err) {
+    console.error('loadJobs error:', err);
+    grid.innerHTML = `<div class="job-card"><p class="job-description">Could not load jobs. Please refresh.</p></div>`;
+  }
+}
+function renderJobCard(job) {
+  const el = document.createElement('div');
+  el.className = 'job-card';
+  const reqList = (job.requirements || []).map(r => `<li>${escapeHtml(String(r))}</li>`).join('');
+  el.innerHTML = `
+    <h3 class="job-title">${escapeHtml(job.title || 'Untitled Role')}</h3>
+    <div class="job-department">${escapeHtml(job.department || '')}</div>
+    <div class="job-location"><span>📍</span><span>${escapeHtml(job.location || '')}</span></div>
+    <p class="job-description">${escapeHtml(job.description || '')}</p>
+    <div class="job-requirements">
+      <h4>Key Requirements:</h4>
+      <ul class="requirements-list">${reqList}</ul>
+    </div>
+    <button class="apply-btn" type="button">Apply Now</button>
+  `;
+  el.querySelector('.apply-btn').addEventListener('click', () => openModal(job));
+  return el;
+}
+
+/* ---------- MODAL ---------- */
+function openModal(job) {
+  ensureHiddenFields();
+  $('#modalJobTitle').textContent = job?.title ? `Apply for ${job.title}` : 'Apply for Position';
+  $('#applicationModal').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  // Hidden fields used by backend
+  $('#jobId').value = job?._id || '';
+  $('#position').value = job?.title || '';
+}
+function closeModal() {
+  $('#applicationModal').style.display = 'none';
+  document.body.style.overflow = 'auto';
+  const form = $('#applicationForm');
+  if (form) form.reset();
+  const fileName = $('#fileName');
+  if (fileName) fileName.textContent = '';
+}
+$('#applicationModal')?.addEventListener('click', e => { if (e.target === e.currentTarget) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+window.updateFileName = function updateFileName() {
+  const fi = $('#cv'); const fn = $('#fileName'); if (!fi || !fn) return;
+  fn.textContent = fi.files.length ? `Selected: ${fi.files[0].name}` : '';
+  if (fi.files.length) fn.style.color = 'rgba(255,255,255,0.9)';
+};
+
+/* ---------- APPLICATION SUBMIT ---------- */
+document.addEventListener('DOMContentLoaded', () => {
+  ensureHiddenFields();
+  loadJobs();
+
+  const form = $('#applicationForm');
+  if (!form) return;
+
+  // (Optional) add enctype for graceful non-JS fallback
+  form.setAttribute('enctype', 'multipart/form-data');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const fd = new FormData(form);
+    // quick client checks
+    if (!fd.get('jobId')) { alert('Please choose a job from the list (click Apply on a job).'); return; }
+    if (!fd.get('cv')) { alert('Please attach your CV/Resume.'); return; }
+
+    const btn = form.querySelector('.submit-btn');
+    const originalText = btn?.textContent;
+    if (btn) { btn.disabled = true; btn.textContent = 'Submitting…'; }
+
+    try {
+      console.log('POST /api/applications payload:', { jobId: fd.get('jobId'), position: fd.get('position') });
+      const res = await fetch(`${API_BASE}/api/applications`, { method: 'POST', body: fd });
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        console.error('Application submit failed:', res.status, data);
+        alert(`Error: ${data?.error || 'Submission failed.'}`);
+        return;
+      }
+
+      alert(`Thank you ${fd.get('fullName')}! Your application for ${fd.get('position')} has been submitted successfully.`);
+      closeModal();
+    } catch (err) {
+      console.error('Network/JS error on submit:', err);
+      alert('Network error. Please try again.');
+    } finally {
+      if (btn) { btn.disabled = false; btn.textContent = originalText || 'Submit Application'; }
+    }
+  });
+});
+</script>
+
+</body>
+
+</html>

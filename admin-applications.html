@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Applications — Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: system-ui, Arial, sans-serif; margin: 24px; background:#0b0d17; color:#e8e8e8; }
+    h1 { margin-bottom: 8px; }
+    .bar { display:flex; gap:12px; align-items:center; margin: 12px 0 20px; flex-wrap: wrap; }
+    input, button { padding:10px 12px; border-radius:8px; border:1px solid #2b2f3a; background:#121520; color:#e8e8e8; }
+    input::placeholder { color:#9aa3b2; }
+    button { cursor:pointer; }
+    table { width:100%; border-collapse: collapse; overflow: auto; }
+    th, td { border-bottom: 1px solid #2b2f3a; text-align:left; padding:10px; vertical-align: top; }
+    th { background:#0f1320; position: sticky; top:0; }
+    .muted { color:#9aa3b2; font-size: 12px; }
+    .nowrap { white-space: nowrap; }
+    .wrap { white-space: normal; }
+    .pill { display:inline-block; padding:2px 8px; background:#1a2235; border:1px solid #2b2f3a; border-radius:12px; font-size:12px; }
+    a { color:#7fb2ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .empty { padding: 18px; border:1px dashed #2b2f3a; border-radius:12px; text-align:center; color:#9aa3b2; }
+  </style>
+</head>
+<body>
+  <h1>Applications</h1>
+  <div class="muted">Admin view of job applications. Use the API key to load data and download CVs.</div>
+
+  <div class="bar">
+    <input id="apiBase" type="text" placeholder="API Base (e.g. http://localhost:4000)" style="min-width:280px" />
+    <input id="apiKey" type="password" placeholder="x-api-key (admin)" style="min-width:240px" />
+    <input id="q" type="text" placeholder="Search name/email/position…" style="min-width:260px" />
+    <button id="loadBtn">Load</button>
+  </div>
+
+  <div id="content"></div>
+
+  <script>
+    const state = {
+      apps: [],
+      filtered: []
+    };
+
+    function esc(s = '') {
+      return String(s)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function fmtDate(d) {
+      try {
+        return new Date(d).toLocaleString();
+      } catch { return d || ''; }
+    }
+
+    async function load() {
+      const base = document.getElementById('apiBase').value.trim() || 'http://localhost:4000';
+      const key  = document.getElementById('apiKey').value.trim();
+
+      if (!key) {
+        alert('Please enter your admin x-api-key.');
+        return;
+      }
+
+      const content = document.getElementById('content');
+      content.innerHTML = '<div class="empty">Loading…</div>';
+
+      try {
+        const res = await fetch(`${base}/api/applications`, {
+          headers: { 'x-api-key': key }
+        });
+        if (!res.ok) throw new Error(`Failed (${res.status})`);
+        const data = await res.json();
+
+        state.apps = Array.isArray(data) ? data : [];
+        state.filtered = state.apps;
+        render(base);
+      } catch (e) {
+        console.error(e);
+        content.innerHTML = `<div class="empty">Could not load applications. Check API base and key.</div>`;
+      }
+    }
+
+    function filter() {
+      const q = document.getElementById('q').value.trim().toLowerCase();
+      if (!q) {
+        state.filtered = state.apps.slice();
+      } else {
+        state.filtered = state.apps.filter(a => {
+          const job = a.jobId && a.jobId.title ? a.jobId.title : a.position || '';
+          const hay = [
+            a.fullName, a.email, a.phone, a.description, job
+          ].map(x => (x || '').toLowerCase()).join(' ');
+          return hay.includes(q);
+        });
+      }
+      const base = document.getElementById('apiBase').value.trim() || 'http://localhost:4000';
+      render(base);
+    }
+
+    function render(apiBase) {
+      const content = document.getElementById('content');
+      if (!state.filtered.length) {
+        content.innerHTML = `<div class="empty">No applications found.</div>`;
+        return;
+      }
+
+      const rows = state.filtered.map(a => {
+        const jobTitle = a.jobId && a.jobId.title ? a.jobId.title : (a.position || '—');
+        const cvUrl = `${apiBase}/uploads/${encodeURIComponent(a.cvFilename || '')}`;
+
+        return `
+          <tr>
+            <td class="nowrap">${esc(fmtDate(a.createdAt))}</td>
+            <td class="wrap">
+              <div><strong>${esc(jobTitle)}</strong></div>
+              <div class="muted">${esc(a.jobId?._id || a.jobId || '')}</div>
+            </td>
+            <td class="wrap">
+              <div><span class="pill">${esc(a.fullName || '')}</span></div>
+              <div class="muted">
+                <a href="mailto:${esc(a.email || '')}">${esc(a.email || '')}</a>
+                ${a.phone ? ' · ' + esc(a.phone) : ''}
+              </div>
+            </td>
+            <td class="wrap">${esc(a.description || '')}</td>
+            <td class="nowrap">
+              ${a.cvFilename
+                ? `<a href="${cvUrl}" download>Download CV</a>`
+                : '<span class="muted">No file</span>'}
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      content.innerHTML = `
+        <div style="overflow:auto; border:1px solid #2b2f3a; border-radius: 12px;">
+          <table>
+            <thead>
+              <tr>
+                <th class="nowrap">Submitted</th>
+                <th>Position</th>
+                <th>Applicant</th>
+                <th>Message</th>
+                <th>CV</th>
+              </tr>
+            </thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    // events
+    document.getElementById('loadBtn').addEventListener('click', load);
+    document.getElementById('q').addEventListener('input', filter);
+
+    // sensible defaults for local dev
+    document.getElementById('apiBase').value = 'http://localhost:4000';
+  </script>
+</body>
+</html>
