@@ -8,8 +8,9 @@ const ApplicationSchema = new mongoose.Schema(
     email: { type: String, required: true },
     phone: { type: String, required: true },
     description: { type: String, required: true },
-    cvFilename: { type: String, required: true }, // stored file name
-    cvOriginalName: { type: String, required: true } // user’s filename
+    // cvFilename: { type: String, required: true }, // stored file name
+    cvOriginalName: { type: String, required: true }, // user’s filename
+    cvUrl: String, 
   },
   { timestamps: true }
 );
