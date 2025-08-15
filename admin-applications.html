@@ -37,10 +37,7 @@
   <div id="content"></div>
 
   <script>
-    const state = {
-      apps: [],
-      filtered: []
-    };
+    const state = { apps: [], filtered: [] };
 
     function esc(s = '') {
       return String(s)
@@ -52,9 +49,7 @@
     }
 
     function fmtDate(d) {
-      try {
-        return new Date(d).toLocaleString();
-      } catch { return d || ''; }
+      try { return new Date(d).toLocaleString(); } catch { return d || ''; }
     }
 
     async function load() {
@@ -70,14 +65,12 @@
       content.innerHTML = '<div class="empty">Loading…</div>';
 
       try {
-        const res = await fetch(`${base}/api/applications`, {
-          headers: { 'x-api-key': key }
-        });
+        const res = await fetch(`${base}/api/applications`, { headers: { 'x-api-key': key } });
         if (!res.ok) throw new Error(`Failed (${res.status})`);
         const data = await res.json();
 
         state.apps = Array.isArray(data) ? data : [];
-        state.filtered = state.apps;
+        state.filtered = state.apps.slice();
         render(base);
       } catch (e) {
         console.error(e);
@@ -92,9 +85,8 @@
       } else {
         state.filtered = state.apps.filter(a => {
           const job = a.jobId && a.jobId.title ? a.jobId.title : a.position || '';
-          const hay = [
-            a.fullName, a.email, a.phone, a.description, job
-          ].map(x => (x || '').toLowerCase()).join(' ');
+          const hay = [a.fullName, a.email, a.phone, a.description, job]
+            .map(x => (x || '').toLowerCase()).join(' ');
           return hay.includes(q);
         });
       }
@@ -111,7 +103,15 @@
 
       const rows = state.filtered.map(a => {
         const jobTitle = a.jobId && a.jobId.title ? a.jobId.title : (a.position || '—');
-        const cvUrl = `${apiBase}/uploads/${encodeURIComponent(a.cvFilename || '')}`;
+
+        // Prefer cvUrl (Vercel Blob). Fallback to /uploads/cvFilename for legacy/local files.
+        const cvUrl = a.cvUrl
+          ? a.cvUrl
+          : (a.cvFilename ? `${apiBase}/uploads/${encodeURIComponent(a.cvFilename)}` : '');
+
+        const cvCell = cvUrl
+          ? `<a href="${cvUrl}" target="_blank" rel="noopener noreferrer">Download CV</a>`
+          : '<span class="muted">No file</span>';
 
         return `
           <tr>
@@ -123,16 +123,12 @@
             <td class="wrap">
               <div><span class="pill">${esc(a.fullName || '')}</span></div>
               <div class="muted">
-                <a href="mailto:${esc(a.email || '')}">${esc(a.email || '')}</a>
-                ${a.phone ? ' · ' + esc(a.phone) : ''}
+                ${a.email ? `<a href="mailto:${esc(a.email)}">${esc(a.email)}</a>` : ''}
+                ${a.phone ? (a.email ? ' · ' : '') + esc(a.phone) : ''}
               </div>
             </td>
             <td class="wrap">${esc(a.description || '')}</td>
-            <td class="nowrap">
-              ${a.cvFilename
-                ? `<a href="${cvUrl}" download>Download CV</a>`
-                : '<span class="muted">No file</span>'}
-            </td>
+            <td class="nowrap">${cvCell}</td>
           </tr>
         `;
       }).join('');
@@ -155,11 +151,10 @@
       `;
     }
 
-    // events
     document.getElementById('loadBtn').addEventListener('click', load);
     document.getElementById('q').addEventListener('input', filter);
 
-    // sensible defaults for local dev
+    // default for your deploy
     document.getElementById('apiBase').value = 'https://blackcodedev-web-wz5p.vercel.app';
   </script>
 </body>
