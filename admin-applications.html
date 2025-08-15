@@ -58,7 +58,7 @@
     }
 
     async function load() {
-      const base = document.getElementById('apiBase').value.trim() || 'http://localhost:4000';
+      const base = document.getElementById('apiBase').value.trim() || 'https://blackcodedev-web-wz5p.vercel.app';
       const key  = document.getElementById('apiKey').value.trim();
 
       if (!key) {
@@ -98,7 +98,7 @@
           return hay.includes(q);
         });
       }
-      const base = document.getElementById('apiBase').value.trim() || 'http://localhost:4000';
+      const base = document.getElementById('apiBase').value.trim() || 'https://blackcodedev-web-wz5p.vercel.app';
       render(base);
     }
 
@@ -160,7 +160,7 @@
     document.getElementById('q').addEventListener('input', filter);
 
     // sensible defaults for local dev
-    document.getElementById('apiBase').value = 'http://localhost:4000';
+    document.getElementById('apiBase').value = 'https://blackcodedev-web-wz5p.vercel.app';
   </script>
 </body>
 </html>
