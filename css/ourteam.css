@@ -520,8 +520,8 @@ body {
 
 .leader-image {
     position: relative;
-    width: 120px;
-    height: 120px;
+    width: 250px;
+    height: 250px;
     margin: 0 auto 30px;
     border-radius: 50%;
     background: linear-gradient(45deg, #333, #555);
@@ -577,14 +577,14 @@ body {
 }
 
 .leader-info h3 {
-    font-size: 1.8rem;
+    /* font-size: 1.8rem; */
     margin-bottom: 10px;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
 .leader-title {
-    font-size: 1.1rem;
+    /* font-size: 1.1rem; */
     color: rgba(255, 255, 255, 0.7);
     margin-bottom: 20px;
     text-transform: uppercase;
