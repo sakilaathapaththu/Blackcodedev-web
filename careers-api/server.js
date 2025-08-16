@@ -126,7 +126,32 @@ app.get('/api/applications', async (req, res) => {
 
   res.json(apps);
 });
+// Admin: set a job's active status
+app.patch('/api/jobs/:id/active', async (req, res) => {
+  try {
+    const key = (req.header('x-api-key') || '').trim();
+    if (key !== (process.env.ADMIN_API_KEY || '').trim()) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
 
+    const { active } = req.body;
+    if (typeof active !== 'boolean') {
+      return res.status(400).json({ error: 'active must be boolean' });
+    }
+
+    const updated = await Job.findByIdAndUpdate(
+      req.params.id,
+      { active },
+      { new: true }
+    );
+
+    if (!updated) return res.status(404).json({ error: 'Job not found' });
+    res.json(updated);
+  } catch (e) {
+    console.error('jobs/:id/active error:', e);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
 // Serverless export for Vercel; normal listen for local dev
 const port = process.env.PORT || 4000;
 if (require.main === module) {
