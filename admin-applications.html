@@ -234,10 +234,18 @@ const jobsContent = document.getElementById('jobsContent');
 
 async function loadJobs() {
   const base = document.getElementById('apiBase').value.trim() || 'https://blackcodedev-web-wz5p.vercel.app';
+  const key  = document.getElementById('apiKey').value.trim();
+
+  if (!key) {
+    jobsContent.innerHTML = '<div class="empty">Enter your admin x-api-key, then click "View Careers".</div>';
+    return;
+  }
+
   jobsContent.innerHTML = '<div class="empty">Loading careers…</div>';
 
   try {
-    const res = await fetch(`${base}/api/jobs`);
+    // *** use the ADMIN endpoint that returns ALL jobs ***
+    const res = await fetch(`${base}/api/jobs/all`, { headers: { 'x-api-key': key } });
     if (!res.ok) throw new Error(`Failed (${res.status})`);
     const jobs = await res.json();
 
@@ -249,8 +257,8 @@ async function loadJobs() {
     const rows = jobs.map(j => {
       const isActive = j.active !== false;
       const nextState = !isActive;
-      const btnLabel = isActive ? 'Disable' : 'Enable';
-      const statusLabel = isActive ? 'Active' : 'Inactive';
+      const btnLabel  = isActive ? 'Disable' : 'Enable';
+      const status    = isActive ? 'Active' : 'Inactive';
 
       return `
         <tr>
@@ -258,13 +266,12 @@ async function loadJobs() {
           <td class="nowrap">${esc(j.department || '')}</td>
           <td class="nowrap">${esc(j.location || '')}</td>
           <td class="nowrap">${esc(j.createdAt ? new Date(j.createdAt).toLocaleString() : '')}</td>
-          <td class="nowrap"><span class="pill">${statusLabel}</span></td>
+          <td class="nowrap"><span class="pill">${status}</span></td>
           <td class="nowrap">
             <button
               class="toggle-active"
               data-id="${esc(j._id || '')}"
               data-next="${nextState}"
-              title="${btnLabel} this job"
             >${btnLabel}</button>
           </td>
         </tr>
@@ -289,7 +296,7 @@ async function loadJobs() {
       </div>
     `;
 
-    bindToggleButtons(); // attach handlers after render
+    bindToggleButtons();
   } catch (e) {
     console.error(e);
     jobsContent.innerHTML = '<div class="empty">Could not load careers.</div>';
@@ -309,26 +316,22 @@ async function toggleJobActive(jobId, nextActive) {
   try {
     const res = await fetch(`${base}/api/jobs/${jobId}/active`, {
       method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': key
-      },
+      headers: { 'Content-Type': 'application/json', 'x-api-key': key },
       body: JSON.stringify({ active: Boolean(nextActive) })
     });
-
     if (!res.ok) throw new Error(`Failed (${res.status})`);
-    await loadJobs(); // refresh list
+    await loadJobs(); // refresh with ALL jobs, so disabled ones still show
   } catch (e) {
     console.error(e);
     alert('Could not update status.');
   }
 }
 
-// Bind click handlers for newly rendered buttons
+// Bind click handlers for toggle buttons
 function bindToggleButtons() {
   document.querySelectorAll('.toggle-active').forEach(btn => {
     btn.addEventListener('click', () => {
-      const id = btn.getAttribute('data-id');
+      const id   = btn.getAttribute('data-id');
       const next = btn.getAttribute('data-next') === 'true';
       toggleJobActive(id, next);
     });
@@ -338,7 +341,7 @@ function bindToggleButtons() {
 // Button: View Careers
 document.getElementById('viewJobsBtn').addEventListener('click', loadJobs);
 
-// After adding a career, refresh the list if visible
+// After adding a career, refresh list if it's visible
 const maybeRefreshJobs = () => {
   if (jobsContent && jobsContent.innerHTML && !/No careers found|Loading careers/.test(jobsContent.textContent)) {
     loadJobs();

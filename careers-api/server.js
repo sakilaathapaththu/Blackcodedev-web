@@ -126,6 +126,15 @@ app.get('/api/applications', async (req, res) => {
 
   res.json(apps);
 });
+// --- Admin: list ALL jobs (active + inactive) ---
+app.get('/api/jobs/all', async (req, res) => {
+  const key = (req.header('x-api-key') || '').trim();
+  if (key !== (process.env.ADMIN_API_KEY || '').trim()) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  const jobs = await Job.find({}).sort({ createdAt: -1 });
+  res.json(jobs);
+});
 // Admin: set a job's active status
 app.patch('/api/jobs/:id/active', async (req, res) => {
   try {
