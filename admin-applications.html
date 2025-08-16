@@ -8,7 +8,7 @@
     body { font-family: system-ui, Arial, sans-serif; margin: 24px; background:#0b0d17; color:#e8e8e8; }
     h1 { margin-bottom: 8px; }
     .bar { display:flex; gap:12px; align-items:center; margin: 12px 0 20px; flex-wrap: wrap; }
-    input, button { padding:10px 12px; border-radius:8px; border:1px solid #2b2f3a; background:#121520; color:#e8e8e8; }
+    input, button,textarea { padding:10px 12px; border-radius:8px; border:1px solid #2b2f3a; background:#121520; color:#e8e8e8; }
     input::placeholder { color:#9aa3b2; }
     button { cursor:pointer; }
     table { width:100%; border-collapse: collapse; overflow: auto; }
@@ -32,10 +32,30 @@
     <input id="apiKey" type="password" placeholder="x-api-key (admin)" style="min-width:240px" />
     <input id="q" type="text" placeholder="Search name/email/position…" style="min-width:260px" />
     <button id="loadBtn">Load</button>
+    <button id="addCareerBtn">Add Career</button> 
+    <button id="viewJobsBtn">View Careers</button>
   </div>
 
   <div id="content"></div>
-
+  <div id="jobsContent" style="margin-top:16px;"></div>
+<!-- Popup Modal -->
+<div id="careerModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center;">
+  <div style="background:#121520; padding:20px; border-radius:12px; width:500px; max-width:95%;">
+    <h2 style="margin-top:0;">Add Career</h2>
+    <form id="careerForm" style="display:flex; flex-direction:column; gap:12px;">
+      <input type="text" id="jobTitle" placeholder="Job Title" required />
+      <input type="text" id="jobDept" placeholder="Department" required />
+      <input type="text" id="jobLoc" placeholder="Location" required />
+      <textarea id="jobDesc" placeholder="Description" required></textarea>
+      <textarea id="jobReqs" placeholder="Requirements (one per line)" required></textarea>
+      <div style="display:flex; justify-content:flex-end; gap:10px;">
+        <button type="button" onclick="closeCareerModal()">Cancel</button>
+        <button type="submit">Save</button>
+      </div>
+    </form>
+    <div id="careerMsg" class="muted" style="margin-top:10px;"></div>
+  </div>
+</div>
   <script>
     const state = { apps: [], filtered: [] };
 
@@ -156,6 +176,174 @@
 
     // default for your deploy
     document.getElementById('apiBase').value = 'https://blackcodedev-web-wz5p.vercel.app';
+    const modal = document.getElementById('careerModal');
+  const form = document.getElementById('careerForm');
+  const msg = document.getElementById('careerMsg');
+
+  document.getElementById('addCareerBtn').addEventListener('click', () => {
+    modal.style.display = 'flex';
+    msg.textContent = '';
+    form.reset();
+  });
+
+  function closeCareerModal() {
+    modal.style.display = 'none';
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    msg.textContent = 'Saving...';
+
+    const base = document.getElementById('apiBase').value.trim();
+    const key  = document.getElementById('apiKey').value.trim();
+
+    if (!key) {
+      msg.textContent = 'Missing admin x-api-key.';
+      return;
+    }
+
+    const payload = {
+      title: document.getElementById('jobTitle').value,
+      department: document.getElementById('jobDept').value,
+      location: document.getElementById('jobLoc').value,
+      description: document.getElementById('jobDesc').value,
+      requirements: document.getElementById('jobReqs').value.split('\n').map(r => r.trim()).filter(Boolean)
+    };
+
+    try {
+      const res = await fetch(`${base}/api/jobs/add`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': key
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!res.ok) throw new Error(`Failed (${res.status})`);
+      msg.textContent = 'Career added successfully ✅';
+      form.reset();
+    } catch (err) {
+      console.error(err);
+      msg.textContent = 'Error adding career ❌';
+    }
+  });
+  
+  // ----- VIEW / TOGGLE CAREERS -----
+const jobsContent = document.getElementById('jobsContent');
+
+async function loadJobs() {
+  const base = document.getElementById('apiBase').value.trim() || 'https://blackcodedev-web-wz5p.vercel.app';
+  jobsContent.innerHTML = '<div class="empty">Loading careers…</div>';
+
+  try {
+    const res = await fetch(`${base}/api/jobs`);
+    if (!res.ok) throw new Error(`Failed (${res.status})`);
+    const jobs = await res.json();
+
+    if (!Array.isArray(jobs) || jobs.length === 0) {
+      jobsContent.innerHTML = '<div class="empty">No careers found.</div>';
+      return;
+    }
+
+    const rows = jobs.map(j => {
+      const isActive = j.active !== false;
+      const nextState = !isActive;
+      const btnLabel = isActive ? 'Disable' : 'Enable';
+      const statusLabel = isActive ? 'Active' : 'Inactive';
+
+      return `
+        <tr>
+          <td class="wrap"><strong>${esc(j.title || '')}</strong></td>
+          <td class="nowrap">${esc(j.department || '')}</td>
+          <td class="nowrap">${esc(j.location || '')}</td>
+          <td class="nowrap">${esc(j.createdAt ? new Date(j.createdAt).toLocaleString() : '')}</td>
+          <td class="nowrap"><span class="pill">${statusLabel}</span></td>
+          <td class="nowrap">
+            <button
+              class="toggle-active"
+              data-id="${esc(j._id || '')}"
+              data-next="${nextState}"
+              title="${btnLabel} this job"
+            >${btnLabel}</button>
+          </td>
+        </tr>
+      `;
+    }).join('');
+
+    jobsContent.innerHTML = `
+      <div style="overflow:auto; border:1px solid #2b2f3a; border-radius:12px;">
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Department</th>
+              <th>Location</th>
+              <th class="nowrap">Created</th>
+              <th class="nowrap">Status</th>
+              <th class="nowrap">Actions</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    `;
+
+    bindToggleButtons(); // attach handlers after render
+  } catch (e) {
+    console.error(e);
+    jobsContent.innerHTML = '<div class="empty">Could not load careers.</div>';
+  }
+}
+
+// Toggle a job's active status (requires x-api-key)
+async function toggleJobActive(jobId, nextActive) {
+  const base = document.getElementById('apiBase').value.trim() || 'https://blackcodedev-web-wz5p.vercel.app';
+  const key  = document.getElementById('apiKey').value.trim();
+
+  if (!key) {
+    alert('Enter your admin x-api-key to change status.');
+    return;
+  }
+
+  try {
+    const res = await fetch(`${base}/api/jobs/${jobId}/active`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': key
+      },
+      body: JSON.stringify({ active: Boolean(nextActive) })
+    });
+
+    if (!res.ok) throw new Error(`Failed (${res.status})`);
+    await loadJobs(); // refresh list
+  } catch (e) {
+    console.error(e);
+    alert('Could not update status.');
+  }
+}
+
+// Bind click handlers for newly rendered buttons
+function bindToggleButtons() {
+  document.querySelectorAll('.toggle-active').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-id');
+      const next = btn.getAttribute('data-next') === 'true';
+      toggleJobActive(id, next);
+    });
+  });
+}
+
+// Button: View Careers
+document.getElementById('viewJobsBtn').addEventListener('click', loadJobs);
+
+// After adding a career, refresh the list if visible
+const maybeRefreshJobs = () => {
+  if (jobsContent && jobsContent.innerHTML && !/No careers found|Loading careers/.test(jobsContent.textContent)) {
+    loadJobs();
+  }
+};
   </script>
 </body>
 </html>
