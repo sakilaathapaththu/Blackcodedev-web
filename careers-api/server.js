@@ -161,6 +161,65 @@ app.patch('/api/jobs/:id/active', async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 });
+
+// --- Admin: get single job by id (optional helper) ---
+app.get('/api/jobs/:id', async (req, res) => {
+  const key = (req.header('x-api-key') || '').trim();
+  if (key !== (process.env.ADMIN_API_KEY || '').trim()) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  const job = await Job.findById(req.params.id);
+  if (!job) return res.status(404).json({ error: 'Job not found' });
+  res.json(job);
+});
+
+// --- Admin: update a job (partial updates supported) ---
+app.patch('/api/jobs/:id', async (req, res) => {
+  try {
+    const key = (req.header('x-api-key') || '').trim();
+    if (key !== (process.env.ADMIN_API_KEY || '').trim()) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    const updates = {};
+    const {
+      title, department, location, description,
+      requirements, active
+    } = req.body;
+
+    if (typeof title === 'string') updates.title = title;
+    if (typeof department === 'string') updates.department = department;
+    if (typeof location === 'string') updates.location = location;
+    if (typeof description === 'string') updates.description = description;
+
+    // Allow requirements as array or newline/comma-separated string
+    if (Array.isArray(requirements)) {
+      updates.requirements = requirements.filter(Boolean);
+    } else if (typeof requirements === 'string') {
+      updates.requirements = requirements
+        .split(/\r?\n|,/)
+        .map(s => s.trim())
+        .filter(Boolean);
+    }
+
+    if (typeof active === 'boolean') updates.active = active;
+
+    const job = await Job.findByIdAndUpdate(
+      req.params.id,
+      { $set: updates },
+      { new: true, runValidators: true }
+    );
+
+    if (!job) return res.status(404).json({ error: 'Job not found' });
+    res.json(job);
+  } catch (e) {
+    console.error('PATCH /api/jobs/:id error:', e);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+
+
 // Serverless export for Vercel; normal listen for local dev
 const port = process.env.PORT || 4000;
 if (require.main === module) {
