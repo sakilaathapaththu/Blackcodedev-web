@@ -95,7 +95,7 @@
     }
 
     async function load() {
-      const base = document.getElementById('apiBase').value.trim() || 'http://localhost:4000';
+      const base = document.getElementById('apiBase').value.trim() || 'https://blackcodedev-web-wz5p.vercel.app';
       const key  = document.getElementById('apiKey').value.trim();
 
       if (!key) {
@@ -132,7 +132,7 @@
           return hay.includes(q);
         });
       }
-      const base = document.getElementById('apiBase').value.trim() || 'http://localhost:4000';
+      const base = document.getElementById('apiBase').value.trim() || 'https://blackcodedev-web-wz5p.vercel.app';
       render(base);
     }
 
@@ -197,7 +197,7 @@
     document.getElementById('q').addEventListener('input', filter);
 
     // default for your deploy
-    document.getElementById('apiBase').value = 'http://localhost:4000';
+    document.getElementById('apiBase').value = 'https://blackcodedev-web-wz5p.vercel.app';
 
     // ===== Add Career modal logic =====
     const modal = document.getElementById('careerModal');
@@ -259,7 +259,7 @@
     const jobsContent = document.getElementById('jobsContent');
 
     async function loadJobs() {
-      const base = document.getElementById('apiBase').value.trim() || 'http://localhost:4000';
+      const base = document.getElementById('apiBase').value.trim() || 'https://blackcodedev-web-wz5p.vercel.app';
       const key  = document.getElementById('apiKey').value.trim();
 
       if (!key) {
@@ -339,7 +339,7 @@
     }
 
     async function toggleJobActive(jobId, nextActive) {
-      const base = document.getElementById('apiBase').value.trim() || 'http://localhost:4000';
+      const base = document.getElementById('apiBase').value.trim() || 'https://blackcodedev-web-wz5p.vercel.app';
       const key  = document.getElementById('apiKey').value.trim();
 
       if (!key) {
