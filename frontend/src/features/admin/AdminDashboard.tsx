@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { env } from '@/config/env';
+import { env, normalizeBaseUrl } from '@/config/env';
 import { api } from '@/lib/api-client';
 import type { Application, Job, JobInput } from '@/lib/types';
 import { ApplicationsTable, filterApplications } from './ApplicationsTable';
@@ -29,7 +29,7 @@ export function AdminDashboard() {
   const [jobs, setJobs] = useState<Remote<Job[]>>({ status: 'idle' });
   const [dialog, setDialog] = useState<Dialog>(null);
 
-  const base = apiBase.trim().replace(/\/+$/, '') || env.apiUrl;
+  const base = normalizeBaseUrl(apiBase) || env.apiUrl;
   const key = apiKey.trim();
 
   const filteredApps = useMemo(
