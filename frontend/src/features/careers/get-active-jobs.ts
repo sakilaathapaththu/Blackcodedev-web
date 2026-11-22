@@ -16,7 +16,10 @@ export async function getActiveJobs(): Promise<Job[] | null> {
 
   try {
     const jobs = await api.listActiveJobs();
-    cacheLife('minutes');
+    // stale: how long a browser may reuse the page without asking the server
+    // (30 s is the minimum that still allows prerendering). Admin changes
+    // also clear the server cache instantly via /api/revalidate/jobs.
+    cacheLife({ stale: 30, revalidate: 60, expire: 3600 });
     return Array.isArray(jobs) ? jobs : [];
   } catch (err) {
     // Cache failures only briefly so a temporary API outage heals quickly.
