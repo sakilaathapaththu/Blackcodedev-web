@@ -47,7 +47,7 @@ Admin routes need the header `x-api-key: <ADMIN_API_KEY>`.
 | Method | Path                         | Access | Description                                     |
 | ------ | ---------------------------- | ------ | ----------------------------------------------- |
 | GET    | `/api/health`                | public | Health check                                    |
-| GET    | `/api/jobs`                  | public | Active jobs (CDN-cached for 60 s)               |
+| GET    | `/api/jobs`                  | public | Active jobs (not CDN-cached; the website caches it) |
 | GET    | `/api/jobs/all`              | admin  | All jobs                                        |
 | GET    | `/api/jobs/:id`              | admin  | One job                                         |
 | POST   | `/api/jobs`                  | admin  | Create job (`/api/jobs/add` also works)         |

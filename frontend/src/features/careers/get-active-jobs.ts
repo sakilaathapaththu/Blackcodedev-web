@@ -1,6 +1,9 @@
-import { cacheLife } from 'next/cache';
+import { cacheLife, cacheTag } from 'next/cache';
 import { api } from '@/lib/api-client';
 import type { Job } from '@/lib/types';
+
+/** Cache tag for the public job list; revalidated when an admin edits jobs. */
+export const JOBS_CACHE_TAG = 'jobs';
 
 /**
  * Server-side, cached read of the public job list. Rendering jobs on the
@@ -9,6 +12,7 @@ import type { Job } from '@/lib/types';
  */
 export async function getActiveJobs(): Promise<Job[] | null> {
   'use cache';
+  cacheTag(JOBS_CACHE_TAG);
 
   try {
     const jobs = await api.listActiveJobs();

@@ -82,6 +82,16 @@ export function AdminDashboard() {
     }
   }
 
+  /** Make the public careers page show the change right away. */
+  async function refreshPublicCareers() {
+    try {
+      await api.admin.revalidateJobs(key);
+    } catch (err) {
+      // Not fatal: the page also refreshes on its own within a few minutes.
+      console.warn('Could not refresh careers page cache:', err);
+    }
+  }
+
   /** Refresh the careers list only if it is currently shown. */
   function refreshJobsIfVisible() {
     if (jobs.status === 'ready') void loadJobs();
@@ -94,7 +104,7 @@ export function AdminDashboard() {
     }
     try {
       await api.admin.setJobActive(base, key, job._id, job.active === false);
-      await loadJobs();
+      await Promise.all([loadJobs(), refreshPublicCareers()]);
     } catch (err) {
       console.error(err);
       alert('Could not update status.');
@@ -109,6 +119,7 @@ export function AdminDashboard() {
       await api.admin.createJob(base, key, input);
     }
     refreshJobsIfVisible();
+    void refreshPublicCareers();
   }
 
   return (

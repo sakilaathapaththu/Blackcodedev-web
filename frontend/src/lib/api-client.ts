@@ -59,6 +59,13 @@ export const api = {
         body: JSON.stringify(job),
       }),
 
+    /** Tells this website to drop its cached job list (same-origin route). */
+    revalidateJobs: (apiKey: string) =>
+      requestJson<{ revalidated: boolean }>('/api/revalidate/jobs', {
+        method: 'POST',
+        headers: adminHeaders(apiKey),
+      }),
+
     setJobActive: (apiBase: string, apiKey: string, id: string, active: boolean) =>
       requestJson<Job>(`${apiBase}/api/jobs/${encodeURIComponent(id)}/active`, {
         method: 'PATCH',

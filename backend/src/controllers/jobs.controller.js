@@ -6,7 +6,9 @@ const PUBLIC_FIELDS = 'title department location description requirements active
 /** GET /api/jobs — public list of open roles. */
 export async function listActiveJobs(_req, res) {
   const jobs = await Job.find({ active: true }).select(PUBLIC_FIELDS).sort({ createdAt: -1 }).lean();
-  res.set('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=300');
+  // The website caches this itself and revalidates on admin changes,
+  // so a CDN copy here would only delay updates.
+  res.set('Cache-Control', 'no-store');
   res.json(jobs);
 }
 
