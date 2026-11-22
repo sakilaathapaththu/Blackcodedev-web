@@ -1,0 +1,15 @@
+import type { MetadataRoute } from 'next';
+import { siteConfig } from '@/config/site';
+
+export default function manifest(): MetadataRoute.Manifest {
+  return {
+    name: siteConfig.name,
+    short_name: 'BlackCode',
+    description: siteConfig.description,
+    start_url: '/',
+    display: 'standalone',
+    background_color: '#000000',
+    theme_color: '#000000',
+    icons: [{ src: '/images/minilogo.png', sizes: '512x512', type: 'image/png' }],
+  };
+}

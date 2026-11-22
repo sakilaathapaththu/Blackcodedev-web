@@ -1,0 +1,545 @@
+/* Scoped styles for the about page. Generated from the original css/ file; edit freely. */
+.page-about {
+    font-family: 'Arial', sans-serif;
+    background: #000;
+    color: #fff;
+    overflow-x: clip;
+    scroll-behavior: smooth;
+    line-height: 1.6;
+}
+.page-about .hero {
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-about .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    animation: about-pulse 4s ease-in-out infinite;
+}
+
+@keyframes about-pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+.page-about .hero-content {
+    text-align: center;
+    z-index: 2;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.page-about .hero h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #fff 0%, #888 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: about-slideInUp 1s ease-out;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.page-about .hero p {
+    font-size: 1.2rem;
+    opacity: 0.8;
+    animation: about-slideInUp 1s ease-out 0.2s both;
+    line-height: 1.6;
+}
+.page-about .story {
+    padding: 100px 50px;
+    background: linear-gradient(135deg, #111 0%, #000 100%);
+}
+
+.page-about .story-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+}
+
+.page-about .story-content h2 {
+    font-size: 3rem;
+    margin-bottom: 30px;
+    background: linear-gradient(135deg, #fff 0%, #888 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.page-about .story-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    opacity: 0.9;
+    margin-bottom: 25px;
+}
+.page-about .timeline {
+    position: relative;
+    padding-left: 50px;
+}
+
+.page-about .timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, #fff, rgba(255, 255, 255, 0.3));
+}
+
+.page-about .timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+    padding-left: 40px;
+}
+
+.page-about .timeline-dot {
+    position: absolute;
+    left: -50px;
+    top: 10px;
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border-radius: 50%;
+    border: 3px solid #000;
+    z-index: 2;
+}
+
+.page-about .timeline-item::before {
+    content: attr(data-year);
+    position: absolute;
+    left: -100px;
+    top: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.page-about .timeline-content h4 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.page-about .timeline-content p {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    line-height: 1.6;
+}
+.page-about .mvv {
+    padding: 100px 50px;
+    background: #000;
+}
+
+.page-about .mvv-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.page-about .mvv-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.page-about .mvv-card {
+    background: linear-gradient(145deg, #111, #222);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.page-about .mvv-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.page-about .mvv-card:hover::before {
+    opacity: 1;
+}
+
+.page-about .mvv-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
+}
+
+.page-about .mvv-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.page-about .mvv-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.page-about .mvv-card p {
+    opacity: 0.8;
+    line-height: 1.7;
+}
+.page-about .stats {
+    padding: 100px 50px;
+    background: linear-gradient(135deg, #111 0%, #000 100%);
+    text-align: center;
+}
+
+.page-about .stats-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.page-about .stats h2 {
+    font-size: 3rem;
+    margin-bottom: 60px;
+    background: linear-gradient(135deg, #fff 0%, #888 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.page-about .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+}
+
+.page-about .stat-item {
+    position: relative;
+}
+
+.page-about .stat-number {
+    font-size: 4rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #fff 0%, #888 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.page-about .stat-suffix {
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-left: 5px;
+}
+
+.page-about .stat-label {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+.page-about .approach {
+    padding: 100px 50px;
+    background: #000;
+}
+
+.page-about .approach-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.page-about .approach h2 {
+    font-size: 3rem;
+    margin-bottom: 60px;
+    background: linear-gradient(135deg, #fff 0%, #888 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.page-about .approach-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+}
+
+.page-about .approach-step {
+    background: linear-gradient(145deg, #111, #222);
+    padding: 40px 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-about .approach-step::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.page-about .approach-step:hover::before {
+    opacity: 1;
+}
+
+.page-about .approach-step:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
+}
+
+.page-about .step-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #fff 0%, #888 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+}
+
+.page-about .approach-step h4 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.page-about .approach-step p {
+    opacity: 0.8;
+    line-height: 1.6;
+}
+.page-about .technologies {
+    padding: 100px 50px;
+    background: linear-gradient(135deg, #111 0%, #000 100%);
+}
+
+.page-about .tech-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.page-about .tech-container h2 {
+    font-size: 3rem;
+    margin-bottom: 60px;
+    background: linear-gradient(135deg, #fff 0%, #888 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Flex (not grid) so an incomplete last row is centred. */
+.page-about .tech-categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+}
+
+.page-about .tech-category {
+    flex: 0 1 260px;
+    background: linear-gradient(145deg, #111, #222);
+    padding: 28px 22px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.page-about .tech-category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(255, 255, 255, 0.1);
+}
+
+.page-about .tech-category h4 {
+    font-size: 1.2rem;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+}
+
+.page-about .tech-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
+.page-about .tech-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.page-about .tech-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+}
+.page-about .particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.page-about .particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    animation: about-float 6s infinite linear;
+}
+
+@keyframes about-float {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+@keyframes about-slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@media (max-width: 968px) {
+    .page-about nav {
+        padding: 15px 20px;
+    }
+
+    .page-about .nav-links {
+        display: none;
+    }
+
+    .page-about .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .page-about .story-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+ .page-about .story-content h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .page-about .story-content p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+    .page-about .story-visual {
+        justify-content: center;
+    }
+
+    .page-about .timeline::before {
+
+        left: 33px;
+    }
+
+    .page-about .timeline-dot {
+        left: -25px;
+    }
+
+    .page-about .timeline-item::before {
+        left: -55px;
+        font-size: 0.75rem;
+    }
+   .page-about .timeline-content h4 {
+        font-size: 1rem;
+    }
+
+    .page-about .timeline-content p {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+    .page-about .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .page-about .stat-number {
+        font-size: 2.5rem;
+    }
+
+    .page-about .stat-label {
+        font-size: 0.9rem;
+    }
+
+    .page-about .approach-grid,
+    .page-about .mvv-grid,
+    .page-about .tech-category {
+        flex-basis: 100%;
+    }
+
+    .page-about .tech-item {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+
+    .page-about .story, .page-about .mvv, .page-about .stats, .page-about .approach, .page-about .technologies, .page-about .footer-content {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .page-about .story-content h2,
+    .page-about .stats h2,
+    .page-about .approach h2,
+    .page-about .tech-container h2 {
+        font-size: 2rem;
+    }
+
+}

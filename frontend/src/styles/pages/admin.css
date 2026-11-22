@@ -1,0 +1,77 @@
+/* Scoped styles for the admin console (ported from admin-applications.html). */
+.page-admin {
+  min-height: 100vh;
+  padding: 24px;
+  font-family: system-ui, Arial, sans-serif;
+  background: #0b0d17;
+  color: #e8e8e8;
+}
+.page-admin h1 { margin-bottom: 8px; }
+.page-admin .bar { display: flex; gap: 12px; align-items: center; margin: 12px 0 20px; flex-wrap: wrap; }
+.page-admin input,
+.page-admin button,
+.page-admin textarea {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #2b2f3a;
+  background: #121520;
+  color: #e8e8e8;
+  font: inherit;
+}
+.page-admin input::placeholder,
+.page-admin textarea::placeholder { color: #9aa3b2; }
+.page-admin button { cursor: pointer; }
+.page-admin button:disabled { opacity: 0.6; cursor: progress; }
+.page-admin table { width: 100%; border-collapse: collapse; }
+.page-admin th,
+.page-admin td { border-bottom: 1px solid #2b2f3a; text-align: left; padding: 10px; vertical-align: top; }
+.page-admin th { background: #0f1320; position: sticky; top: 0; }
+.page-admin .muted { color: #9aa3b2; font-size: 12px; }
+.page-admin .nowrap { white-space: nowrap; }
+.page-admin .wrap { white-space: normal; }
+.page-admin .pill {
+  display: inline-block;
+  padding: 2px 8px;
+  background: #1a2235;
+  border: 1px solid #2b2f3a;
+  border-radius: 12px;
+  font-size: 12px;
+}
+.page-admin a { color: #7fb2ff; text-decoration: none; }
+.page-admin a:hover { text-decoration: underline; }
+.page-admin .empty {
+  padding: 18px;
+  border: 1px dashed #2b2f3a;
+  border-radius: 12px;
+  text-align: center;
+  color: #9aa3b2;
+}
+.page-admin .admin-table-wrap { overflow: auto; border: 1px solid #2b2f3a; border-radius: 12px; }
+
+.page-admin .admin-modal {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+.page-admin .admin-modal-panel {
+  background: #121520;
+  padding: 20px;
+  border-radius: 12px;
+  width: 500px;
+  max-width: 95%;
+}
+.page-admin .admin-modal-panel h2 { margin-top: 0; margin-bottom: 12px; }
+.page-admin .admin-form { display: flex; flex-direction: column; gap: 12px; }
+.page-admin .admin-form-actions { display: flex; justify-content: flex-end; gap: 10px; }
+.page-admin .admin-form-message { margin-top: 10px; }
+.page-admin .link-button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #7fb2ff;
+}
+.page-admin .link-button:hover { text-decoration: underline; }
